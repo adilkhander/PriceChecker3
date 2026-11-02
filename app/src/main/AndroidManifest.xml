@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- Сохранение чеков в Галерею на Android 9 и ниже -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".LauncherActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="Режим ТСД"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".SalesActivity"
+            android:exported="false"
+            android:label="Режим продаж"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <activity
+            android:name=".InventoryActivity"
+            android:exported="false"
+            android:label="Режим инвентаризации"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <activity
+            android:name=".PaymentActivity"
+            android:exported="false"
+            android:label="Приём оплаты"
+            android:windowSoftInputMode="adjustResize|stateVisible" />
+
+        <activity
+            android:name=".ReceiptActivity"
+            android:exported="false"
+            android:label="Товарный чек" />
+
+        <activity
+            android:name=".ReceiptsActivity"
+            android:exported="false"
+            android:label="Журнал чеков" />
+
+        <!-- Отдача картинок чеков и выгрузок в WhatsApp и другие приложения -->
+        <provider
+            android:name=".ShareFiles"
+            android:authorities="kz.pricechecker.files"
+            android:exported="false"
+            android:grantUriPermissions="true" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:label="@string/settings"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".SmbBrowserActivity"
+            android:exported="false"
+            android:label="@string/browse_title" />
+
+        <activity
+            android:name=".ScanActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Material.NoActionBar.Fullscreen" />
+    </application>
+</manifest>

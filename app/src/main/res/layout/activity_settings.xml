@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="24dp">
+
+        <!-- ===== Прайс-лист ===== -->
+        <LinearLayout
+            style="@style/Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView style="@style/SectionTitle"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Прайс-лист (общая папка)" />
+
+            <TextView style="@style/FieldLabel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Сетевой путь к файлу .xlsx" />
+            <EditText
+                android:id="@+id/etPriceUnc"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:hint="\\\\192.168.1.10\\Общая\\прайс.xlsx"
+                android:inputType="textUri" />
+
+            <Button
+                android:id="@+id/btnBrowse"
+                style="@android:style/Widget.Material.Button.Borderless.Colored"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Обзор папки…" />
+
+            <TextView style="@style/FieldLabel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Пользователь Windows (пусто — гость)" />
+            <EditText
+                android:id="@+id/etUser"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="text" />
+
+            <TextView style="@style/FieldLabel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Пароль" />
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+
+            <TextView style="@style/FieldLabel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Домен / рабочая группа (необязательно)" />
+            <EditText
+                android:id="@+id/etDomain"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="text" />
+
+            <CheckBox
+                android:id="@+id/cbAuto"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Обновлять прайс при запуске приложения" />
+
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btnLoadNow"
+                    style="@style/PrimaryButton"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Загрузить по сети" />
+                <Button
+                    android:id="@+id/btnLocalFile"
+                    style="@android:style/Widget.Material.Button"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:minHeight="52dp"
+                    android:text="Файл с телефона" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ===== Принтер ===== -->
+        <LinearLayout
+            style="@style/Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView style="@style/SectionTitle"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Принтер этикеток" />
+
+            <RadioGroup
+                android:id="@+id/rgMode"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+                <RadioButton
+                    android:id="@+id/rbSmb"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Общий принтер Windows (SMB)" />
+                <RadioButton
+                    android:id="@+id/rbTcp"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Сетевой принтер по IP (порт 9100)" />
+                <RadioButton
+                    android:id="@+id/rbSystem"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Системная печать Android" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/groupSmb"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView style="@style/FieldLabel"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Сетевой путь к принтеру (логин/пароль — как для прайса)" />
+                <EditText
+                    android:id="@+id/etPrinterUnc"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:hint="\\\\192.168.1.10\\XP-365B"
+                    android:inputType="textUri" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/groupTcp"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+                    <TextView style="@style/FieldLabel"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="IP-адрес принтера" />
+                    <EditText
+                        android:id="@+id/etPrinterIp"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:hint="192.168.1.50"
+                        android:inputType="text" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView style="@style/FieldLabel"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Порт" />
+                    <EditText
+                        android:id="@+id/etPrinterPort"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ===== Этикетка ===== -->
+        <LinearLayout
+            style="@style/Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView style="@style/SectionTitle"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Параметры этикетки" />
+
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView style="@style/FieldLabel"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Ширина, мм" />
+                    <EditText android:id="@+id/etW"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:inputType="numberDecimal" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView style="@style/FieldLabel"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Высота, мм" />
+                    <EditText android:id="@+id/etH"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:inputType="numberDecimal" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView style="@style/FieldLabel"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Зазор, мм" />
+                    <EditText android:id="@+id/etGap"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:inputType="numberDecimal" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView style="@style/FieldLabel"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Разрешение, dpi" />
+                    <EditText android:id="@+id/etDpi"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView style="@style/FieldLabel"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Плотность 0–15" />
+                    <EditText android:id="@+id/etDensity"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView style="@style/FieldLabel"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Скорость 1–6" />
+                    <EditText android:id="@+id/etSpeed"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView style="@style/FieldLabel"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Сдвиг X, точек" />
+                    <EditText android:id="@+id/etOffX"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView style="@style/FieldLabel"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Сдвиг Y, точек" />
+                    <EditText android:id="@+id/etOffY"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/cbRotate"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Повернуть печать на 180°" />
+            <CheckBox
+                android:id="@+id/cbInvert"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Инвертировать (если печатается негатив)" />
+
+            <Button
+                android:id="@+id/btnTest"
+                style="@style/PrimaryButton"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Тестовая печать" />
+        </LinearLayout>
+
+        <!-- ===== Режим продаж ===== -->
+        <LinearLayout
+            style="@style/Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView style="@style/SectionTitle"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Режим продаж и товарный чек" />
+
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView style="@style/FieldLabel"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Номер кассы (телефона)" />
+                    <EditText android:id="@+id/etKassa"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1.4" android:orientation="vertical">
+                    <TextView style="@style/FieldLabel"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Продавец" />
+                    <EditText android:id="@+id/etCashier"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:inputType="textPersonName|textCapWords" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="На каждом телефоне укажите свой номер кассы (1, 2, 3…), чтобы номера чеков не совпадали: 1-000001, 2-000001."
+                android:textColor="@color/text_muted"
+                android:textSize="12sp" />
+
+            <TextView style="@style/FieldLabel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Название магазина (шапка чека)" />
+            <EditText
+                android:id="@+id/etShopName"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="text|textCapSentences" />
+
+            <TextView style="@style/FieldLabel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="БИН / ИИН (необязательно)" />
+            <EditText
+                android:id="@+id/etShopBin"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="number" />
+
+            <TextView style="@style/FieldLabel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Адрес (необязательно)" />
+            <EditText
+                android:id="@+id/etShopAddress"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="text|textCapSentences" />
+
+            <TextView style="@style/FieldLabel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Телефон магазина (необязательно)" />
+            <EditText
+                android:id="@+id/etShopPhone"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="phone" />
+
+            <TextView style="@style/FieldLabel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Текст внизу чека" />
+            <EditText
+                android:id="@+id/etFooter"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="text|textCapSentences" />
+        </LinearLayout>
+
+        <!-- ===== Режим инвентаризации ===== -->
+        <LinearLayout
+            style="@style/Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView style="@style/SectionTitle"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Инвентаризация: Google-таблица" />
+
+            <TextView
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Необязательно. Если указать адрес скрипта, остатки будут сразу уходить в общую Google-таблицу: каждый продавец получает свой столбец. Имя продавца берётся из поля «Продавец» выше. Как создать скрипт — в README."
+                android:textColor="@color/text_muted"
+                android:textSize="12sp" />
+
+            <TextView style="@style/FieldLabel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Адрес веб-приложения Google (оканчивается на /exec)" />
+            <EditText
+                android:id="@+id/etSheetUrl"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:hint="https://script.google.com/macros/s/…/exec"
+                android:inputType="textUri" />
+
+            <TextView style="@style/FieldLabel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Секретный ключ (тот же, что в скрипте)" />
+            <EditText
+                android:id="@+id/etSheetSecret"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/btnSheetTest"
+                style="@style/PrimaryButton"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Проверить соединение" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvAbout"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="center"
+            android:textColor="@color/text_muted"
+            android:textSize="12sp" />
+    </LinearLayout>
+</ScrollView>

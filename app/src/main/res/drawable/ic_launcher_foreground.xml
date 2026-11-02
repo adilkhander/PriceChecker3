@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- ценник -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M30,36 L62,36 L80,54 L62,72 L30,72 Z"/>
+    <path android:fillColor="#1F3A5F"
+        android:pathData="M62,50 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0"/>
+    <!-- штрихкод -->
+    <path android:fillColor="#1F3A5F" android:pathData="M35,44h2v20h-2z"/>
+    <path android:fillColor="#1F3A5F" android:pathData="M39,44h1v20h-1z"/>
+    <path android:fillColor="#1F3A5F" android:pathData="M42,44h3v20h-3z"/>
+    <path android:fillColor="#1F3A5F" android:pathData="M47,44h1v20h-1z"/>
+    <path android:fillColor="#1F3A5F" android:pathData="M50,44h2v20h-2z"/>
+    <path android:fillColor="#1F3A5F" android:pathData="M54,44h1v20h-1z"/>
+</vector>

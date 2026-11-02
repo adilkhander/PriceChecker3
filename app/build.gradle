@@ -1,0 +1,71 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'kz.pricechecker'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'kz.pricechecker'
+        minSdk 26
+        targetSdk 34
+        versionCode 4
+        versionName '3.0'
+    }
+
+    // Один и тот же ключ подписи для всех сборок: обновления ставятся поверх без удаления приложения.
+    // Для собственного ключа замените файл и пароли (или передайте через переменные окружения в GitHub Secrets).
+    signingConfigs {
+        shared {
+            storeFile file('../keystore/pricechecker.jks')
+            storePassword System.getenv('KEYSTORE_PASSWORD') ?: 'pricechecker'
+            keyAlias System.getenv('KEY_ALIAS') ?: 'pricechecker'
+            keyPassword System.getenv('KEY_PASSWORD') ?: 'pricechecker'
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.shared
+        }
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.shared
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    packaging {
+        resources {
+            excludes += [
+                'META-INF/versions/**',
+                'META-INF/DEPENDENCIES',
+                'META-INF/LICENSE*',
+                'META-INF/NOTICE*',
+                'META-INF/*.kotlin_module',
+                'META-INF/INDEX.LIST',
+                'META-INF/BCKEY.*',
+                'META-INF/BCKEY*'
+            ]
+        }
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}
+
+dependencies {
+    // Распознавание и генерация штрихкодов (ZXing, без Google Play Services)
+    implementation 'com.google.zxing:core:3.5.3'
+
+    // Доступ к общим папкам и принтерам Windows по SMB2/SMB3
+    implementation 'com.hierynomus:smbj:0.13.0'
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.78.1'
+}
